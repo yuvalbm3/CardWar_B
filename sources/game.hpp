@@ -6,9 +6,7 @@
 namespace ariel{
     class Game{
     public:
-        Game();
         Game(Player&, Player&);
-        // ~Game(){};
         void printLastTurn();
         void playTurn();
         void playAll();
@@ -20,11 +18,10 @@ namespace ariel{
         std::string _name;
         std::string last_turn;
         std::string log;
-        int turn_counter;
+        // integer from statistics
+        int p1_win_rate, p2_win_rate, draw_num, turn_num;
         Player &_p1;
         Player &_p2;
-        // std::vector<Card::cardData> p2_hand;
-        // std::vector<Card::cardData> p1_hand;
 
     };
 }

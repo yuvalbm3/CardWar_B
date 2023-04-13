@@ -8,10 +8,7 @@ namespace ariel{
     enum class Rank { TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE };
     
     class Card{
-    // private:
-        // enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES };
     public:
-    // enum Rank { TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE };
         struct card {
             Rank rank;
             Suit suit;

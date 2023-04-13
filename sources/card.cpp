@@ -5,76 +5,92 @@
 using namespace std;
 
 
-// using ::Card;
 
 namespace ariel {
-    // int Card::stacksize() {
-    //     return 52; // standard deck size
-    // }
 
-    // int Card::cardesTaken() {
-    //     return 0; // no cards taken yet
-    // }
-
+    // this function intial the deck, shuffel it and divid it to the 2 player
     void Card::initialShuffeledDeck(Deck& deck, std::vector<card>& p1, std::vector<card>& p2){
+        //intial the deck
+        std::vector<Card::card> temp; 
         card card;
-        for( int suit = 0; suit < suitSize ; suit++){
-            for( int rank = 0; rank < rankSize ; rank++){
-                card.suit = Suit(suit);
+        for( int rank = 0; rank < rankSize ; rank++){
+            for( int suit = 0; suit < suitSize ; suit++){
                 card.rank = Rank(rank);
+                card.suit = Suit(suit);
                 deck.cards.push_back(card);
             }
         }
-        // Deck shuffled;
+        //shuffel the deck
         int i=0;
         while (!deck.cards.empty()){
+            // if(i < 26){
+            //     size_t rand_index = (size_t)rand() % deck.cards.size();
+            //     p1.push_back(deck.cards[rand_index]);
+            //     deck.cards.erase(deck.cards.begin() + (int)rand_index);
+            //     i++;
+            // }
+            // else{
+            //     size_t rand_index = (size_t)rand() % deck.cards.size();
+            //     p2.push_back(deck.cards[rand_index]);
+            //     deck.cards.erase(deck.cards.begin() + (int)rand_index);
+            // }
             if(i < 26){
-                size_t rand_index = (size_t)rand() % deck.cards.size();
-                p1.push_back(deck.cards[rand_index]);
-                deck.cards.erase(deck.cards.begin() + (int)rand_index);
+                p1.push_back(deck.cards.back());
+                deck.cards.pop_back();
                 i++;
             }
             else{
-                size_t rand_index = (size_t)rand() % deck.cards.size();
-                p2.push_back(deck.cards[rand_index]);
-                deck.cards.erase(deck.cards.begin() + (int)rand_index);
+                temp.push_back(deck.cards.back());
+                deck.cards.pop_back();
+                i++;
             }
-            
         }
-        // deck = shuffled;
+        while(!temp.empty()){
+            p2.push_back(temp.back());
+            temp.pop_back();
+        }
     }
 
+    //print all the cards in the deck
     void Card::printDeck(const Deck& deck){
         for(card c: deck.cards){
             printCard(c);
         }
     }
 
+    //print spesific card
     void Card::printCard(card& card){
         std::cout << "Rank: " << Card::getRankString(card) << "  Suit:" << Card::getSuitString(card) << "/n" << std::endl;
     }
 
+    //compare 2 cards, and return which player won the match
     int Card::compareCards(card c1, card c2){
         int card_a = getRank(c1);
-        int card_b = getRank(c2);  
+        int card_b = getRank(c2);
+        //Ace weaker than 2 according to instructions  
         if (card_a == 14 && card_b == 2){
             return 2;
         }  
+        //Ace weaker than 2 according to instructions  
         else if (card_b == 14 && card_a == 2){
             return 1;
         }
+        //if card b rank is bigger, player 2 win
         else if (card_b > card_a){
             return 2;
         }
+        //if card a rank is bigger, player 1 win
         else if (card_a > card_b){
             return 1;
         }
+        //draw
         else if (card_a == card_b){
             return 0;
         }
         return 0;
     }
 
+    //get rank of cards in integers
     int Card::getRank(const Card::card& card){
         switch (card.rank)
         {
@@ -107,6 +123,7 @@ namespace ariel {
         }
     }
 
+    //get rank of cards in String for printing
     std::string Card::getRankString(const Card::card& card){
         switch (card.rank)
         {
@@ -139,6 +156,7 @@ namespace ariel {
         }
     }
 
+    //get suit of cards in String for printing
     std::string Card::getSuitString(const Card::card& card){
         switch (card.suit)
         {
@@ -152,36 +170,7 @@ namespace ariel {
             return "SPADES";
         }
     }
-    // void Card::shuffleDeck(Deck& deck){
-    //     Deck shuffled;
-    //     while (!deck.cards.empty()){
-    //         size_t rand_index = rand() % deck.cards.size();
-    //         shuffled.cards.push_back(deck.cards[rand_index]);
-    //         deck.cards.erase(deck.cards.begin() + rand_index);
-    //     }
-    //     deck = shuffled;
-    // }
 
-    // void dealDeck(Card::Deck& deck, std::vector<Card>& p1, std::vector<Card>& p2){
-    //     int i = 0;
-    //     while (i < 26){
-    //         p1.push_back(deck.cards.pop_back());
-    //         i+= 1;
-    //     }
-    //     p2 = deck;
-    // }
-
-    // int main()
-    // {
-    //     Card c;
-    //     Card::Deck myDeck;
-    //     std::vector<Card::cardData> p1;
-    //     std::vector<Card::cardData> p2;
-    //     c.Card::initialShuffeledDeck(myDeck, p1, p2);
-    //     return 0;
-    // }
-
-// }
 }
 
 

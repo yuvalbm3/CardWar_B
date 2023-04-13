@@ -1,6 +1,5 @@
 #include "doctest.h"
 #include <stdexcept>
-#include <iostream>
 #include "sources/player.hpp"
 #include "sources/game.hpp"
 #include "sources/card.hpp"
@@ -35,27 +34,8 @@ TEST_CASE("The card scheme at the end of the game")
     Player p1("Alice");
     Player p2("Bob");
     Game game(p1, p2);
-    // std::cout << "\n p1 name is: " << p1.getName() << endl; 
-    std::cout << "\n p1 stacksize is: " << p1.stacksize() << endl; 
-    // std::cout << "\n p1 cardesTaken is: " << p1.cardesTaken() << endl; 
-    // std::cout << "\n p2 name is: " << p2.getName() << endl; 
-    std::cout << "\n p2 stacksize is: " << p2.stacksize() << endl; 
-    // std::cout << "\n p2 cardesTaken is: " << p2.cardesTaken() << endl;
-    // std::cout << "________________________beforePlayAll__\n" << endl;
     game.playAll();
-    // std::cout << "\n p1 name is: " << p1.getName() << endl; 
-    // std::cout << "\n p1 stacksize is: " << p1.stacksize() << endl; 
-    // std::cout << "\n p1 cardesTaken is: " << p1.cardesTaken() << endl;
-    // std::cout << "\n p2 name is: " << p2.getName() << endl; 
-    // std::cout << "\n p2 stacksize is: " << p2.stacksize() << endl; 
-    // std::cout << "\n p2 cardesTaken is: " << p2.cardesTaken() << endl;
-    // std::cout << "________________________SummingAll___\n" << endl;
     int sum = p1.stacksize() + p1.cardesTaken() + p2.stacksize() + p2.cardesTaken();
-    std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++" << endl; 
-    std::cout << "\n" << p1.getName() << " stacksize is: " << p1.stacksize() << endl; 
-    std::cout << "\n" << p1.getName() << " cardesTaken is: " << p1.cardesTaken() << endl; 
-    std::cout << "\n" << p2.getName() << " stacksize is: " << p2.stacksize() << endl; 
-    std::cout << "\n" << p2.getName() << " cardesTaken is: " << p2.cardesTaken() << endl; 
     CHECK(sum == 52);
 }
 

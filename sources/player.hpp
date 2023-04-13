@@ -5,7 +5,6 @@
 #include <vector>
 
 namespace ariel{
-
     class Player{
     public:
         Player(std::string);
